@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import random
+import os
 
 app = Flask(__name__)
 
@@ -29,4 +30,6 @@ def reset_game():
     attempts = 0
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Use the port provided by Render or default to 5000 for local testing
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
